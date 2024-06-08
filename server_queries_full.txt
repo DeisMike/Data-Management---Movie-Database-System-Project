@@ -1,0 +1,271 @@
+show databases;
+create database Movies;
+use Movies;
+
+
+create table Movie
+(MovieID varchar(255) not null primary key,
+MovieName varchar(255) not null,
+ReleaseDate Date,
+Duration numeric(10),
+Genre varchar(255),
+Rating varchar(255));
+
+alter table Movie add Duration numeric(10);
+drop table movie;
+
+create table Actors
+(ActorID numeric(65) not null primary key,
+ActorName varchar(255) not null,
+Age numeric(3),
+Award varchar(255),
+Movie_ID varchar(255),
+foreign key (Movie_ID) references Movie (MovieID)
+on delete cascade on update cascade);
+
+drop table Actors;
+
+select * from Actors;
+
+create table Director
+(DirectorID varchar(255) not null primary key,
+DirectorName varchar(255) not null,
+Age numeric(3),
+Award varchar(255),
+Movie_ID varchar(255),
+foreign key (Movie_ID) references Movie (MovieID)
+on delete cascade on update cascade);
+
+drop table Director;
+
+select * from Director;
+
+create table Producer
+(ProducerID varchar(255) not null primary key,
+ProducerName varchar(255) not null,
+Movie_ID varchar(255),
+foreign key(Movie_ID) references Movie (MovieID)
+on delete cascade on update cascade);
+
+drop table Producer;
+
+select * from Producer;
+
+create table Distributors
+(DistributorID varchar(255) not null primary key,
+DistributorName varchar(255) not null,
+Location varchar(255),
+Movie_ID varchar(255),
+foreign key(Movie_ID) references Movie (MovieID)
+on delete cascade on update cascade);
+
+insert into Producer (ProducerID, ProducerName, Movie_ID) 
+values (150, 'Jason Blum', NULL),
+	('123','Jason hi',NULL);
+
+select * from Producer;
+delete from Producer where ProducerID= '150';
+
+
+
+insert into Movie (MovieID, MovieName, ReleaseDate, Duration, Genre, Rating)
+values
+(14161, '2012', '2009-10-10', 158, 'Action', 'PG-13'),
+(440, 'Aliens vs Predator: Requiem', '2007-12-25', 94, 'Science Fiction', 'R');
+
+select * from Movie;
+delete from Movie where MovieID='14161';
+
+
+insert into Movie (MovieID, MovieName, ReleaseDate, Duration, Genre, Rating)
+values
+(14161, '2012', '2009-10-10', 158, 'Action', 'PG-13'),
+(440, 'Aliens vs Predator: Requiem', '2007-12-25', 94, 'Science Fiction', 'R'),
+(3133, 'Badlands', '1973-10-15', 94, 'Crime', 'PG'),
+(13053, 'Bolt', '2008-11-21', 98, 'Family', 'PG'),
+(18289, 'Godzilla vs. Biollante', '1989-12-16', 105, 'Science Fiction', 'PG'),
+(48016, 'The Maze', '2010-10-19', 86, 'Horror', 'R'),
+(2142, 'Cop Land', '1997-08-15', 104, 'Crime', 'R'),
+(76403, 'DNA', '1997-03-07', 105, 'Action', 'R'),
+(6479, 'I Am Legend', '2007-12-14', 101, 'Horror', 'PG-13'),
+(9374, 'Death Becomes Her', '1992-07-30', 104, 'Comedy', 'PG-13'),
+(671, 'Harry Potter and the Philosopher\'s Stone', '2001-11-16', 152, 'Adventure', 'PG'),
+(8851, 'The Blob', '1988-08-05', 86, 'Science Fiction', 'R'),
+(1977, 'The Grudge 3', '2009-05-12', 90, 'Horror', 'R'),
+(49444, 'Kung Fu Panda 2', '2011-05-25', 91, 'Family', 'PG'),
+(13700, 'Home on the Range', '2004-04-02', 76, 'Family', 'PG'),
+(12429, 'Ponyo', '2008-07-19', 100, 'Family', 'G'),
+(12197, 'Reprise', '2006-07-03', 105, 'Drama', 'R'),
+(38940, 'Men of War', '1994-09-04', 103, 'Action', 'R'),
+(7353, 'Fireflies in the Garden', '2008-02-10', 108, 'Drama', 'R'),
+(2362, 'Westworld', '1973-10-22', 88, 'Action', 'PG'),
+(1927, 'Hulk', '2003-06-19', 138, 'Action', 'PG-13'),
+(11459, 'Sky High', '2005-07-29', 100, 'Family', 'PG-10'),
+(37958, 'Immortals', '2011-11-10', 110, 'Action', 'R'),
+(4241, 'Visitor Q', '2001-03-17', 84, 'Comedy', 'R'),
+(15300, 'Newsies', '1992-04-10', 121, 'Drama', 'PG'),
+(335, 'Once Upon a Time in the West', '1968-12-21', 175, 'Western', 'PG-13'),
+(10719, 'Elf', '2003-10-09', 97, 'Comedy', 'PG'),
+(10549, 'Hamlet', '2009-12-26', 180, 'Drama', 'PG'),
+(87481, 'Quitting', '2001-09-07', 114, 'Drama', 'R'),
+(13022, 'Rogue', '2007-11-08', 99, 'Thriller', 'R'),
+(14621, 'Lean On Me', '1989-03-03', 108, 'Drama', 'PG-13'),
+(331, 'Jurassic Park III', '2001-07-18', 92, 'Adventure', 'PG-13');
+
+select * from Movie;
+
+insert into Actors (ActorID, ActorName, Age, Award,Movie_ID)
+values
+(101, 'Tom Hanks', '67', 'Academy Award - Best Actor', NULL),
+(102, 'Tom Cruise', '61', 'Golden Globe - Best Actor', NULL),
+(103, 'Denzel Washington', '68', 'Academy Award - Best Actor', NULL),
+(104, 'Samuel L. Jackson', '74', 'BAFTA - Best Actor in Supporting Role', NULL),
+(105, 'Johnny Depp', '60', 'Golden Globe - Best Actor', NULL),
+(106, 'George Clooney', '62', 'Academy Award - Best Supporting Actor', NULL),
+(107, 'Matt Damon', '53', 'Empire Award - Best Actor', 12429),
+(108, 'Christian Bale', '49', 'SAG Award - Outstanding Performance', 15300),
+(109, 'Julia Roberts', '56', 'Academy Award - Best Actress', 7353),
+(110, 'Nicole Kidman', '56', 'Academy Award - Best Actress', NULL),
+(111, 'Sam Neill', '76', 'AACTA Award - Best Lead Actor', 331),
+(112, 'Laura Dern', '56', 'Academy Award - Best Actress in Supporting Role', 331),
+(113, 'Trevor Morgan', '37', 'Independent Spirit Award - Special Distinction', 331),
+(114, 'Jack Black', '54', 'Copper Wing Award', 49444),
+(115, 'Gary Oldman', '65', 'Academy Award - Best Lead Actor', 49444),
+(116, 'Angelina Jolie', '48', 'Academy Award - Best Actress in Supporting Role', 49444),
+(117, 'Seth Rogen', '41', 'MTV Movie Award', 49444),
+(118, 'Will Smith', '55', 'MTV Movie Award', 6479),
+(119, 'Darrell Foster', '60', NULL, 6479),
+(120, 'Alice Braga', '40', 'ACIE Award - Best Actress', 6479),
+(121, 'Tye Nelson', '45', NULL, 48016),
+(122, 'Shalaina Castle', '38', NULL, 48016),
+(123, 'Clare Niederpruem', '37', NULL, 48016),
+(124, 'Daniel Radcliffe', '34', 'MTV Movie Award', 671),
+(125, 'Emma Watson', '33', 'MTV Movie Award', 671),
+(126, 'Rupert Grint', '35', 'MTV Movie Award', 671),
+(127, 'Alan Rickman', '69', 'SAG Award - Outstanding Performance', 671),
+(128, 'John Cusack', '57', 'Canadian Screen Award - Best Performance', 14161),
+(129, 'Amanda Peet', '51', 'Independent Spririt Robert Altman Award', 14161),
+(130, 'Morgan Lily', '23', NULL, 14161),
+(131, 'Woody Harrelson', '62', 'SAG Award - Outstanding Performance', 14161),
+(132, 'Will Ferrell', '56', 'MTV Movie Award', 10719),
+(133, 'Peter Dinklage', '54', 'SAG Award - Outstanding Performance', 10719),
+(134, 'James Caan', '82', 'Lifetime Achievement Award', 10719),
+(135, 'Endo Kenichi', '62', NULL, 4241),
+(136, 'Fujiko', '43', NULL, 4241),
+(137, 'Kazushi Watanabe', '47', NULL, 4241)
+;
+
+
+
+select * from Actors;
+
+insert into Director (DirectorID, DirectorName, Age, Award, Movie_ID)
+values
+(500, 'Christopher Nolan', '53', 'Empire Award - Best Film', NULL),
+(501, 'Tim Burton', '65', 'Daytime Emmy Award', NULL),
+(502, 'Alfred Hitchcock', '80', 'Golden Globe Award - Television Achievement', NULL),
+(503, 'Steven Spielberg', '76', 'Academy Award - Best Directing', NULL),
+(504, 'Quentin Tarantino', '60', 'Golden Globe Award - Best Screenplay', NULL),
+(505, 'Guillermo del Toro', '59', 'Academy Award - Best Picture', NULL),
+(506, 'Ridley Scott', '86', 'Saturn Award - Best Director', NULL),
+(507, 'Spike Lee', '66', 'Academy Award - Best Writing', NULL),
+(508, 'Woody Allen', '88', 'Academy Award - Best Directing', NULL),
+(509, 'James Cameron', '69', 'Academy Award - Best Directing', NULL),
+(510, 'Martin Scorsese', '81', 'Academy Award - Best Directing', NULL),
+(511, 'Stanley Kubrick', '70', 'BAFTA Award - Best Film', NULL),
+(512, 'Frank Capra', '94', 'Academy Award - Best Directing', NULL),
+(513, 'David Lean', '83', 'Academy Award - Best Directing', NULL),
+(514, 'Wes Anderson', '54', 'BAFTA Award - Best Original Screenplay', NULL),
+(515, 'Francis Ford Coppola', '84', 'Academy Award - Best Directing', NULL),
+(516, 'Howard Hawks', '81', 'Academy Honorary Award', NULL),
+(517, 'Oliver Stone', '77', 'Academy Award - Best Directing', NULL),
+(518, 'Brian De Palma', '83', 'Glory to the Filmmaker Award', NULL),
+(519, 'Joe Johnston', '73', 'Academy Award - Best Effects', 331),
+(520, 'John G. Avildsen', '81', 'Academy Award - Best Director', 14621),
+(521, 'Jennifer Yuh Nelson', '51', 'Primetime Emmy Award - Outstanding Short Form Animated Program', 49444),
+(522, 'Jon Favreau', '57', 'Saturn Award - Best Director', 10719),
+(523, 'Ang Lee', '69', 'Academy Award - Best Directing', 1927),
+(524, 'Chuck Russell', '65', 'Avoriaz Fantastic Film Festival - Best Special Effects', 8851),
+(525, 'Chris Columbus', '65', 'BAFTA Award - Best Feature Film', 671),
+(526, 'Toby Wilkins', '51', 'Jury Award - Best Short Film', 1977),
+(527, 'Francis Lawrence', '52', 'Rembrandt Award - Best International Film', 6479),
+(528, 'Roland Emmerich', '68', 'Saturn Award - Best Director', 14161),
+(529, 'Colin Strause', '47', NULL, 440)
+;
+
+select * from Director;
+
+insert into Producer (ProducerID,ProducerName,Movie_ID)
+values
+(150, 'Jason Blum', NULL),
+(151, 'Frank Marhall', NULL),
+(152, 'Brian Grazer', NULL),
+(153, 'Nina Jacobson', NULL),
+(154, 'Charles Roven', NULL),
+(155, 'Jerry Bruckheimer', NULL),
+(156, 'Megan Ellison', NULL),
+(157, 'Scott Rudin', NULL),
+(158, 'John Davis', 440),
+(159, 'Quentin Tarantino', NULL),
+(160, 'Spike Lee', NULL),
+(161, 'Steven Spielberg', NULL),
+(162, 'Martin Scorsese', NULL),
+(163, 'Samuel Goldwyn', NULL),
+(164, 'Harald Kloser', 14161),
+(165, 'Mark Gordon', 14161),
+(166, 'Larry Franco', 14161),
+(167, 'David Giler', 440),
+(168, 'Walter Hill', 440),
+(169, 'Terrence Malick', 3133),
+(170, 'Clark Spencer', 13053),
+(171, 'John Lasseter', 13053),
+(172, 'Tomoyuki Tanaka', 18289),
+(173, 'Shogo Tomiyama', 18289),
+(174, 'Ground Glass Entertainment', 48016),
+(175, 'Cathy Konrad', 2142),
+(176, 'Cary Woods', 2142),
+(177, 'Ezra Swerdlow', 2142),
+(178, 'Patrick D. Choi', 76403),
+(179, 'Nile Niami', 76403)
+;
+
+select * from Producer;
+delete from Producer where ProducerID='150';
+insert into Distributors (DistributorID, DistributorName, Location, Movie_ID)
+values 
+(101, 'Sony Pictures', '10202 Washington Blvd, Culver City, CA', 14161),
+(102, 'MGM', '245 North Beverly Drive, Beverly Hills, CA', 2362),
+(103, 'Warner Bros.', '3400 Warner Blvd, Burbank, CA', 3133),
+(104, 'Paramount Pictures', '5555 Melrose Avenue, Hollywood, CA', 335),
+(105, 'IFC Films', '323 6th Ave, New York, NY', NULL),
+(106, 'Roadside Attractions', '7920 Sunset Blvd., Los Angeles, CA', NULL),
+(107, '20th Century Studios', '10201 West Pico Blvd, Los Angeles, CA', 440),
+(108, 'Lionsgate', '2700 Colorado Ave, Santa Monica, CA', NULL),
+(109, 'CBS Films', '1100 Glendon Ave, Los Angeles, CA', NULL),
+(110, 'Columbia Pictures', '10202 Washington Blvd, Culver City, CA', NULL),
+(111, 'A24', '31 W 27th St, New York, NY', NULL),
+(112, 'Universal Pictures', '100 Universal City Plaza, Universal City, CA', 9374),
+(113, 'FilmFlex', '3 More London Riverside, London', 440),
+(114, 'Walt Disney Pictures', '500 South Buena Vista Street, Burbank, CA', 13053),
+(115, 'Walt Disney Studios Motion Pictures', '500 South Buena Vista Street, Burbank, CA', 13053),
+(116, 'Toho Co., Ltd.', 'Chiyoda-ku, Tokyo, Japan', 18289),
+(117, 'Dimension Films', '375 Greenwich St, New York, NY', 18289),
+(118, 'Monarch', '25 Lawrence Drive, Windham, NY', 48016),
+(119, 'Miramax', '1901 Avenue of the Stars, Los Angeles, CA', 2142),
+(120, 'Toho Co., Ltd.', 'Chiyoda-ku, Tokyo, Japan', 12429),
+(121, 'Astra Cinema', '20 Russel Avenue, Baclaran, Pasay City, Manila', 76403),
+(122, 'Cabin Fever Entertainment', '100 West Putnam Ave, Greenwich, DE', 76403),
+(123, 'New City Releasing', '5959 CA-27, Woodland Hills, CA', 76403),
+(124, 'Warner Bros.', '3400 Warner Blvd, Burbank, CA', 6479),
+(125, 'United International Pictures', '566 Chiswick High Road, London', 9374),
+(126, 'Warner Bros.', '3400 Warner Blvd, Burbank, CA', 671),
+(127, 'FilmFlex', '3 More London Riverside, London', 671),
+(128, 'TriStar Pictures', '10202 Washington Blvd, Culver City, CA', 8851),
+(129, 'Sony Pictures', '10202 Washington Blvd, Culver City, CA', 1977),
+(130, 'Nordisk Film Distribusjon', 'Nedre gate 7, 0551 Oslo, Norway', 12197)
+;
+
+select * from Distributors;
+
+
+
